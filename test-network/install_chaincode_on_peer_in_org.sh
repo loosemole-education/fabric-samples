@@ -19,4 +19,10 @@ case $1 in
         export CORE_PEER_ADDRESS=localhost:9051 ;;
 esac
 
-peer lifecycle chaincode install basic.tar.gz
+if [ $# -lt 2 ]; then
+    file_name=basic
+else
+    file_name="$2"
+fi
+
+peer lifecycle chaincode install $file_name.tar.gz
