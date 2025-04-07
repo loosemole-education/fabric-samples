@@ -14,11 +14,11 @@ else
     org="$2"
 fi
 
-if [ $# -lt 3 ]; then
-    file_name=basic
-else
-    file_name="$3"
-fi
+#if [ $# -lt 3 ]; then
+#    file_name=basic
+#else
+#    file_name="$3"
+#fi
 
 # Import commands for Peers and import core.yaml path.
 export PATH=${PWD}/../bin:$PATH
@@ -43,4 +43,4 @@ esac
 installed_package="$(peer lifecycle chaincode queryinstalled | grep -oP "(?<=Package ID: )$label:[^,]*")"
 echo "$installed_package"
 
-peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID dpki4der-test --name $file_name --version 1.0 --package-id $installed_package --sequence 1 --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem"
+peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID dpki4der-test --name $label --version 1.0 --package-id $installed_package --sequence 1 --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem"
