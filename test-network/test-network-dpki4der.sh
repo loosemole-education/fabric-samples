@@ -26,19 +26,19 @@ cd ./addOrg3
 ./addOrg3.sh up -c dpki4der-test
 sleep 1
 
-echo "\nPackages the asset_transfer_basic chaincode, as it is in $chaincode_path..."
+echo "Packages the asset_transfer_basic chaincode, as it is in $chaincode_path..."
 cd ..
 ./package_asset_transfer_basic_cc.sh $label $file_name $chaincode_path
 sleep 2
 
-echo "\nInstalling the packaged chaincode on peer0 of org1, and org 2..."
+echo "Installing the packaged chaincode on peer0 of org1, and org 2..."
 ./install_chaincode_on_peer_in_org.sh 1 $file_name
 ./install_chaincode_on_peer_in_org.sh 2 $file_name
 
-echo "\nApprove chaincode as packaged, first from peer0 of org1, then peer0 of org2..."
+echo "Approve chaincode as packaged, first from peer0 of org1, then peer0 of org2..."
 ./approve_chaincode_labeled_x_for_org_y.sh $label 1
 ./approve_chaincode_labeled_x_for_org_y.sh $label 2
 sleep 4
 
-echo "\nCommit chaincode defintion as approved by peer0 of org1 and 2, as a peer from org1"
+echo "Commit chaincode defintion as approved by peer0 of org1 and 2, as a peer from org1"
 ./commit_cc_def.sh $label
